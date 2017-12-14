@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+    <PackageReference Include="newtonsoft.json" Version="10.0.2" />
+    <PackageReference Include="SimpleInjector" Version="4.0.6" />
+    <ProjectReference Include="..\FactoryMind.TrackMe.Business\FactoryMind.TrackMe.Business.csproj" />
+    <ProjectReference Include="..\FactoryMind.TrackMe.Domain\FactoryMind.TrackMe.Domain.csproj" />
+  </ItemGroup>
+</Project>
