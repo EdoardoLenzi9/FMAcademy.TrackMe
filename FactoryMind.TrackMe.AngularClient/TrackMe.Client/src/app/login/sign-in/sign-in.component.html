@@ -1,0 +1,24 @@
+<div id="Login-Background">
+	<div id="login-input" class="z-depth-4">
+		<div id="login-container">
+			<h2>TrackMe</h2>
+			<div class="container">
+				<div class="login-data" *ngIf="Loading != true">
+					<app-input-component #email [Title]="'email'"></app-input-component>
+					<app-input-component #password [Title]="'password'"></app-input-component>
+					<app-selector #gender [Title]="'Gender'" [Items]="['Male','Female','Shemale']"></app-selector>
+					<br><br>
+					<button md-button [style.background]="'rgb(63, 81, 181)'" (click)="SignIn(email.Value,password.Value, gender.SelectedItem)">Sign in</button>
+					<br><br>
+					<a (click)="GoLogin()">Login</a>
+				</div>
+				<div class="loginLoader">
+					<app-loader1 *ngIf="Loading == true"></app-loader1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<app-toast #Toast></app-toast>
+
+

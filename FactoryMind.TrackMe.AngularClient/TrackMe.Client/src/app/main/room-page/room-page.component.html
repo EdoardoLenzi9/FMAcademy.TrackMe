@@ -1,0 +1,157 @@
+<div class="background">
+
+	<img src="../../assets/back.png" class="mediumIcon circle" (click)="GoBack()">
+	<div class="content">
+
+
+
+		<div class="roomsContainer">
+			<ul class="collapsible" data-collapsible="accordion">
+				<li *ngFor="let room of roomList">
+					<div class="collapsible-header" (click)="showRoom(room)">
+						<span class="new badge" data-badge-caption="utenti">{{GetUserCount(room)}}</span>
+						<i class="material-icons">airplay</i>{{room.name}}
+					</div>
+				</li>
+				<li>
+					<div class="create" *ngIf="RoomCreation==false">
+						<img src="../../assets/add.png" class="mediumIcon" (click)="RoomCreation=true">
+					</div>
+				</li>
+				<li>
+					<div class="CreationRoomOption" *ngIf="RoomCreation==true">
+						<input type="text" placeholder="Nome Room" #RoomName>
+						<img src="../../assets/createIcon.png" class="mediumIcon" (click)="CreateRoom(RoomName.value); RoomCreation=false ">
+						<img src="../../assets/close_red.png" class="smallIcon right" (click)="RoomCreation=false">
+					</div>
+				</li>
+			</ul>
+		</div>
+
+		<div class="usersContainer">
+			<ul class="collection" *ngIf="UsersInRoom.length!=0">
+				<app-user-item *ngFor="let user of UsersInRoom" [Title]="user.email" [FirstLine]="user.id" [SecondLine]="user.userGender"
+				 [Marked]="IsUserCurrentUser(user)"></app-user-item>
+				<div class="addUser">
+					<img *ngIf="addingUser==false" src="../../assets/AddUser.png" class="mediumIcon" (click)="addingUser=true">
+					<img *ngIf="addingUser==false" src="../../assets/delete.png" class="smallIcon right" (click)="deleteRoom()">
+					<div class="AddUserption" *ngIf="addingUser==true">
+						<input type="text" placeholder="Nome Utente" #UserNameInput>
+						<img src="../../assets/createIcon.png" class="mediumIcon" (click)="AddUserToRoom(UserNameInput.value)">
+						<img src="../../assets/close_red.png" class="smallIcon right" (click)="addingUser=false">
+					</div>
+				</div>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<app-toast2 #Toast></app-toast2>
+
+
+<style type="text/css">
+	.circle {
+		border-radius: 50%;
+		background-color: grey;
+	}
+
+	.addUser {
+		background-color: white;
+		text-align: center;
+	}
+
+	.halfWith {
+		width: 50%;
+	}
+
+	.CreationRoomOption {
+		background-color: white;
+		text-align: center;
+		padding: 5px;
+		height: 120px;
+	}
+
+	.create {
+		height: 60px;
+		background-color: white;
+		text-align: center;
+		padding: 5px;
+	}
+
+	.mediumIcon {
+		height: 50px;
+		transition: height 0.2s;
+	}
+
+	.mediumIcon:hover {
+		height: 52px;
+	}
+
+	.smallIcon {
+		height: 30px;
+		transition: height 0.2s;
+	}
+
+	.smallIcon:hover {
+		height: 35px;
+	}
+
+
+
+	.right {
+		float: right;
+	}
+
+
+
+
+	.background {
+		height: 100vh;
+		width: 100vw;
+		background: url("../../assets/Background.jpg") no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+
+	.content {
+		width: 60vw;
+		width: 60vw;
+		min-width: 600px;
+		margin-left: 20vw;
+		position: absolute;
+	}
+
+	.roomsContainer {
+		width: 40%;
+		height: auto;
+		padding: 20px;
+		/*
+		border-radius: 20px;
+		border-style: solid;
+		border-width: 1px;
+		border-color: #bdbdbd;*/
+		position: absolute;
+		left: 0;
+	}
+
+	.usersContainer {
+		position: relative;
+		top: 20px;
+		width: 60%;
+		height: auto;
+		padding: 20px;
+		display: inline-block;
+		position: absolute;
+		right: 0;
+	}
+
+	.collapsible-header:hover {
+
+		-webkit-transition: background-color 0.2s;
+		/* Safari */
+		transition: background-color 0.2s;
+		background-color: #bdbdbd;
+	}
+</style>

@@ -1,0 +1,41 @@
+<!--First SideNav-->
+<div id="mySidenav" class="sidenav" (mouseout)="verifySet()" (mouseover)="verifySet()">
+	<button (click)="openNav1()">add user</button>
+	<div class="panel-body" dnd-sortable-container [sortableData]="listOne" [dropZones]="['delete-dropZone']">
+		<ul class="list-group" style="list-style-type: none;">
+			<li *ngFor="let item of listOne; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">
+				<app-user [name]="item" [icon]="iconOne[i]"></app-user>
+			</li>
+		</ul>
+	</div>
+	<a href="javascript:void(0)" class="closebtn" (click)="closeNav01()">&times;</a>
+</div>
+
+<div id="main">
+	<!--Second SideNav-->
+	<div id="mySidenav1" class="sidenav1" (mouseout)="verifySet()" (mouseover)="verifySet()">
+		<div class="panel-body" dnd-sortable-container [sortableData]="listTwo" [dropZones]="['delete-dropZone']">
+			<ul class="list-group" style="list-style-type: none;">
+				<li *ngFor="let item of listTwo; let i = index" class="list-group-item" dnd-sortable [sortableIndex]="i">
+					<app-user [name]="item" [icon]="iconTwo[i]"></app-user>
+				</li>
+			</ul>
+		</div>
+		<a href="javascript:void(0)" class="closebtn" (click)="closeNav1()">&times;</a>
+	</div>
+	<!--Main Panel-->
+	<div id="container" (mouseout)="verifySet()" (mouseover)="verifySet()">
+		<div id="options">
+			<button class="button" (click)="GoRoom()"><i class="material-icons">settings</i></button>
+			<button class="button" (click)="openNav()"><i class="material-icons">room</i></button>
+			<input type="text" name="search" placeholder="Search a Place" [(ngModel)]="centerMap">
+			<button class="button logout" (click)="logout()"><i class="material-icons">launch</i></button>
+		</div>
+		<div id="mappa" dnd-sortable-container [dropZones]="['delete-dropZone']" [sortableData]="listRecycled">
+			<ngui-map class="map" zoom="18" center={{centerMap}} (mapReady$)="onMapReady($event)" (mapClick)="onMapClick($event)" (idle)="onIdle($event)"
+			 mapTypeId="satellite">
+				<marker *ngFor="let pos of positions" [position]="pos" (initialized$)="onMarkerInit($event)"></marker>
+			</ngui-map>
+		</div>
+	</div>
+</div>

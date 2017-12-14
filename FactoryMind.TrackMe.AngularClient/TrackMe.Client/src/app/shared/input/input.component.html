@@ -1,0 +1,13 @@
+
+  <md-input-container class="example-full-width">
+    <input mdInput placeholder="{{Title}}"
+		[formControl]="emailFormControl"
+    (input)="Value = $event.target.value"
+		type="{{Title}}">
+    <md-error *ngIf="emailFormControl.hasError('pattern') && Title !='password'">
+      Please enter a valid <strong>value</strong>
+    </md-error>
+    <md-error *ngIf="emailFormControl.hasError('required')">
+      {{Title}} is <strong>required</strong>
+    </md-error>
+  </md-input-container>
